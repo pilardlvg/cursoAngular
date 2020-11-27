@@ -5,15 +5,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CorreoComponent } from './Components/correo/correo.component';
-import { ListaCorreoComponent } from './lista-correo/lista-correo.component';
-import { NuevoCorreoComponent } from './nuevo-correo/nuevo-correo.component';
+import { ListaCorreoComponent } from './Components/lista-correo/lista-correo.component';
+import { NuevoCorreoComponent } from './Components/nuevo-correo/nuevo-correo.component';
+import { AvisosComponent } from './Components/avisos/avisos.component';
+import { CorreosRecibidosComponent } from './Views/correos-recibidos/correos-recibidos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CorreoComponent,
     ListaCorreoComponent,
-    NuevoCorreoComponent
+    NuevoCorreoComponent,
+    AvisosComponent,
+    CorreosRecibidosComponent
   ],
   imports: [
     BrowserModule,
