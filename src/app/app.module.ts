@@ -2,6 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+// Material Libs
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+
+// External Libs
 import { GoogleApiModule, NgGapiClientConfig, NG_GAPI_CONFIG, GoogleApiConfig} from "ng-gapi";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +21,11 @@ import { NuevoCorreoComponent } from './Components/nuevo-correo/nuevo-correo.com
 import { AvisosComponent } from './Components/avisos/avisos.component';
 import { CorreosRecibidosComponent } from './Views/correos-recibidos/correos-recibidos.component';
 import { LoginComponent } from './Components/login/login.component';
+import { MenuComponent } from './Menu/menu/menu.component';
+import { EnviarComponent } from './Views/enviar/enviar.component';
+import { HomeComponent } from './Views/home/home.component';
+import { VisualizarCorreoComponent } from './Views/visualizar-correo/visualizar-correo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 let gapiClientConfig: NgGapiClientConfig = {
   client_id: "797611936415-g1ca2r4t8pu0o4a5fqi6qh1ftvhstt1b.apps.googleusercontent.com",
@@ -36,7 +49,11 @@ let gapiClientConfig: NgGapiClientConfig = {
     NuevoCorreoComponent,
     AvisosComponent,
     CorreosRecibidosComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    EnviarComponent,
+    HomeComponent,
+    VisualizarCorreoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +65,11 @@ let gapiClientConfig: NgGapiClientConfig = {
       provide: NG_GAPI_CONFIG,
       useValue: gapiClientConfig
     }),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

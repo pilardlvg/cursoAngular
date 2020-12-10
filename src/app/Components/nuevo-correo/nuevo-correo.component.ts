@@ -15,8 +15,7 @@ export class NuevoCorreoComponent implements OnInit {
   @Input() correo: any;
   @Output() accionRealizada: EventEmitter<any> = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder, private servicioAvisos: AvisosService
-    , private gmail: GmailService) { }
+  constructor(private formBuilder: FormBuilder, private servicioAvisos: AvisosService, private gmail: GmailService) { }
 
   ngOnInit(): void {
     this.nuevoCorreo = this.formBuilder.group({
@@ -34,6 +33,7 @@ export class NuevoCorreoComponent implements OnInit {
     //this.servicioAvisos.showMenssage('Correo enviado a ' + this.correo.emisor);
     this.servicioAvisos.showMenssage(`Correo enviado a ${this.correo.emisor}`);
   }
+
   get formulario() { return this.nuevoCorreo.controls; }
 
   onSubmit() {
@@ -48,8 +48,17 @@ export class NuevoCorreoComponent implements OnInit {
     const destinatario = correo.destinatario;
     const asunto = correo.titulo;
 
-    alert("Correo Enviado \nEliminamos el formulario");
     this.onReset();
+
+    this.gmail.sendMessage(texto, destinatario, asunto).subscribe(
+      (response) => {
+        console.log("respuesta envio", response);
+        this.servicioAvisos.showMenssage(`Correo enviado a ${correo.destinatario}`);
+      },
+      (error) => {
+        this.servicioAvisos.showMenssage(`Fallo en el envio`);
+      }
+    );
   }
 
   onReset() {
@@ -60,15 +69,7 @@ export class NuevoCorreoComponent implements OnInit {
 
   cancel(){
     this.onReset();
-    this.gmail.sendMessage(texto, destinatario, asunto).subscribe(
-      (response) => {
-        console.log("respuesta envio", response);
-        this.servicioAvisos.showMenssage(`Correo enviado a ${correo.destinatario}`);
-      },
-      (error) => {
-        this.servicioAvisos.showMenssage(`Fallo en el envio`);
-      }
-    );
+    this.servicioAvisos.showMenssage("Envio Cancelado");
   }
 
 }

@@ -10,7 +10,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public login: LoginService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    console.log(this.login.profile);
   }
 
   signIn() {
